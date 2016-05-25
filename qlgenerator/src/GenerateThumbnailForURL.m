@@ -35,7 +35,7 @@ OSStatus GenerateThumbnailForURL(__unused void* thisInterface, QLThumbnailReques
 
 		// Create the properties dic
 		CFTypeRef keys[1] = {kQLThumbnailPropertyExtensionKey};
-		CFTypeRef values[1] = {(__bridge CFStringRef)extension};
+		CFTypeRef values[1] = {(__bridge CFStringRef)[extension uppercaseString]}; // uppercase extension
 		CFDictionaryRef properties = CFDictionaryCreate(kCFAllocatorDefault, (const void**)keys, (const void**)values, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 
 		// Check by extension because it's highly unprobable that an UTI for these formats is declared

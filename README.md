@@ -1,64 +1,26 @@
-# qlImageSize
+## qlImageSize
 
-This is a **QuickLook** plugin for OS X *10.8+* to display the dimensions of an image and its file size in the title bar.
+This is a fork of Nyx0uf's  [qlImageSize](https://github.com/Nyx0uf/qlImageSize). There are only minor visual modifications made to `qlImageSize` and no modifications made to `mdImageSize`.
 
-![https://static.whine.fr/images/2014/qlimagesize4.jpg](https://static.whine.fr/images/2014/qlimagesize4.jpg)
+To be consistent with other files in OS X, the extension label in the thumbnail was changed into all uppercase:
 
-This plugin can also preview and generate Finder thumbnails for unsupported images formats like :
+Before | After
+--- | ---
+![before](http://i53.photobucket.com/albums/g67/xtreamsoulx/gh_qlimgsize/thumb_before_zps4svt9dfp.png) | ![after](http://i53.photobucket.com/albums/g67/xtreamsoulx/gh_qlimgsize/thumb_after_zpsp30jytvw.png)
 
-- [bpg](http://bellard.org/bpg/ "bpg")
-- [Portable Pixmap](http://en.wikipedia.org/wiki/Netpbm_format "Netpbm")
-- [WebP](https://developers.google.com/speed/webp/ "WebP")
+Additionally, the title of the QuickLook window was changed to be more consistent with the information style in the *Get Info* panel:
 
-![https://static.whine.fr/images/2014/qlimagesize3.jpg](https://static.whine.fr/images/2014/qlimagesize3.jpg)
-
-![https://static.whine.fr/images/2014/qlimagesize2.jpg](https://static.whine.fr/images/2014/qlimagesize2.jpg)
-
-
-# mdImageSize
-
-It's a **Spotlight** plugin to display informations of unsupported images (**WebP**, **bpg**, **Portable Pixmap**) in the Finder's inspector window.
-
-![https://static.whine.fr/images/2014/mdimagesize1.jpg](https://static.whine.fr/images/2014/mdimagesize1.jpg)
-
+![title](http://i53.photobucket.com/albums/g67/xtreamsoulx/gh_qlimgsize/preview_title_zps3ue4ksw6.png)
 
 ### Installation
 
-- Download the `.pkg` installer [here](https://repo.whine.fr/qlImageSize.pkg "qlImageSize for 10.8+").
-- Open it.
-- Follow the steps. (you will be asked for an admin password)
-
-
-### Uninstall
-
-- Launch Terminal.app (in `/Applications/Utilities`)
-- Copy and paste the following line into the Terminal :
-
-`sudo rm -rf "/Library/Application Support/qlimagesize" "/Library/QuickLook/qlImageSize.qlgenerator" "/Library/Spotlight/mdImageSize.mdimporter"`
-
-- Press Enter.
-- Type your password and press Enter.
-
-
-### Limitations
-
-If you are a **Pixelmator** user, its own QuickLook plugin might get in the way when previewing **WebP** files. To fix this you need to edit the file `/Applications/Pixelmator.app/Contents/Library/QuickLook/PixelmatorLook.qlgenerator/Contents/Info.plist` and remove the dict entry that handles **webp**.
-
+1. Open `qlImageSize.xcodeproj` and compile.
+2. Move `qlImageSize.qlgenerator` to `~/Library/QuickLook`.
+3. Run `qlmanage -r` in Terminal.
+4. Optionally, run `killall Finder` to see immediate changes.
+5. ???
+6. Profit!
 
 ### License
 
-***qlImageSize*** is released under the *Simplified BSD license*, see **LICENSE**.
-
-Blog : [Cocoa in the Shell](http://cocoaintheshell.com "Cocoa in the Shell")
-
-Twitter : [@Nyx0uf](https://twitter.com/Nyx0uf "Nyx0uf on Twitter")
-
----
-
-### About Mavericks (OS X 10.9)
-
-***qlImageSize*** doesn't fully work on 10.9. By fully, I mean it works for certain types of images like *tga*, *bmp*, *psd*, *tif* but not for the common ones *jpg*, *png*, *gif*.
-
-It is a known bug in the OS and I can't do anything about it, Apple never fixed it and won't. The best way is to update to this ugly as fuck 10.10, how sad.
-
-For more informations, see [issue 4](https://github.com/Nyx0uf/qlImageSize/issues/4 "issue 4").
+**qlImageSize** is released under the *Simplified BSD license*.

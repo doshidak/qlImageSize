@@ -88,14 +88,20 @@ void CancelPreviewGeneration(__unused void* thisInterface, __unused QLPreviewReq
 
 CF_RETURNS_RETAINED static CFDictionaryRef _create_properties(CFURLRef url, const size_t size, const size_t width, const size_t height, const bool b)
 {
-	// Format file size
+	// Format file size (algorithm inspired by Pascal Pfiffner's QuickLookCSV)
+    float bytes = size;
 	NSString* fmt = nil;
-	if (size > 1048576) // More than 1Mb
-		fmt = [[NSString alloc] initWithFormat:@"%.1fMb", (float)((float)size / 1048576.0f)];
-	else if ((size < 1048576) && (size > 1024)) // 1Kb - 1Mb
-		fmt = [[NSString alloc] initWithFormat:@"%.2fKb", (float)((float)size / 1024.0f)];
-	else // Less than 1Kb
-		fmt = [[NSString alloc] initWithFormat:@"%zub", size];
+    char* strFormat[] = {"%.0f", "%.0f", "%.1f", "%.2f", "%.2f", "%.2f"};
+    char* units[] = {"byte", "KB", "MB", "GB", "TB", "PB"};
+    int i = 0;
+    
+    while (bytes >= 1000){ // seems like Finder uses 1000 instead of 1024
+        bytes /= 1000;
+        i++;
+    }
+    
+    fmt = [[NSString alloc] initWithFormat:@"%s %s", strFormat[i], units[i]];
+    fmt = [NSString stringWithFormat:fmt, bytes];
 
 	// Get filename
 	CFStringRef filename = CFURLCopyLastPathComponent(url);
@@ -105,8 +111,8 @@ CF_RETURNS_RETAINED static CFDictionaryRef _create_properties(CFURLRef url, cons
 	if (b)
 	{
 		CFTypeRef keys[3] = {kQLPreviewPropertyDisplayNameKey, kQLPreviewPropertyWidthKey, kQLPreviewPropertyHeightKey};
-		// WIDTHxHEIGHT • 25.01Kb • filename
-		CFTypeRef values[3] = {CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%dx%d • %@ • %@"), (int)width, (int)height, fmt, filename), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt64Type, &width), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt64Type, &height)};
+		// filename (widthxheight, size bytes)
+		CFTypeRef values[3] = {CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%@ (%d×%d, %@)"), filename, (int)width, (int)height, fmt), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt64Type, &width), CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt64Type, &height)};
 		properties = CFDictionaryCreate(kCFAllocatorDefault, (const void**)keys, (const void**)values, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 		CFRelease(values[0]);
 		CFRelease(values[1]);
@@ -115,8 +121,8 @@ CF_RETURNS_RETAINED static CFDictionaryRef _create_properties(CFURLRef url, cons
 	else
 	{
 		CFTypeRef keys[1] = {kQLPreviewPropertyDisplayNameKey};
-		// WIDTHxHEIGHT • 25.01Kb • filename
-		CFTypeRef values[1] = {CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%dx%d • %@ • %@"), (int)width, (int)height, fmt, filename)};
+		// filename (widthxheight, size bytes)
+		CFTypeRef values[1] = {CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%@ (%d×%d, %@)"), filename, (int)width, (int)height, fmt)};
 		properties = CFDictionaryCreate(kCFAllocatorDefault, (const void**)keys, (const void**)values, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 		CFRelease(values[0]);
 	}

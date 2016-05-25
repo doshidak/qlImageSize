@@ -42,6 +42,7 @@
 		1EFA994214D9288600A09F03 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA994114D9288600A09F03 /* QuickLook.framework */; };
 		1EFA994414D9288600A09F03 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA994314D9288600A09F03 /* ApplicationServices.framework */; };
 		1EFA994614D9288600A09F03 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EFA994514D9288600A09F03 /* CoreServices.framework */; };
+		53538BBB1CF5CE6600244C29 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 53538BBA1CF5CE6600244C29 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		1EFA994114D9288600A09F03 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		1EFA994314D9288600A09F03 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		1EFA994514D9288600A09F03 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		53538BBA1CF5CE6600244C29 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				1EC9800D1A41BBB40008195F /* deps */,
 				1EFA994014D9288600A09F03 /* Frameworks */,
 				1EFA993F14D9288600A09F03 /* Products */,
+				53538BBA1CF5CE6600244C29 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,7 +309,7 @@
 		1EFA993314D9288600A09F03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = MacGeneration;
 				TargetAttributes = {
 					1E7F115A1A459FE800EA2767 = {
@@ -366,6 +369,7 @@
 				1E9319601A52E687001E8818 /* tools.m in Sources */,
 				1E93195E1A52E687001E8818 /* netpbm_decode.m in Sources */,
 				1E9319621A52E687001E8818 /* webp_decode.m in Sources */,
+				53538BBB1CF5CE6600244C29 /* README.md in Sources */,
 				1E93195C1A52E687001E8818 /* bpg_decode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +434,7 @@
 				LIBRARY_STYLE = BUNDLE;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.whine.mdimagesize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
@@ -492,6 +497,7 @@
 				LIBRARY_STYLE = BUNDLE;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = io.whine.mdimagesize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
@@ -514,6 +520,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -620,6 +627,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.whine.qlimagesize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
@@ -678,6 +686,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = io.whine.qlimagesize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
